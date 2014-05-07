@@ -14,6 +14,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Classes'
-  s.resources = 'Assets/*.png'
   s.ios.exclude_files = 'Example'
 end
