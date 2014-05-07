@@ -1,6 +1,6 @@
 # RQShineLabel
 
-A UILabel subclass that lets you animate text similar to Secret app.
+A UILabel subclass that lets you animate text similar to [Secret app](http://capptivate.co/?s=secret).
 
 ![image](https://raw.githubusercontent.com/zipme/RQShineLabel/master/Screenshots/rqshinelabel.gif)
 
