@@ -53,8 +53,6 @@
   });
   [self.view addSubview:self.wallpaper2];
   
-  
-  
   self.shineLabel = ({
     RQShineLabel *label = [[RQShineLabel alloc] initWithFrame:CGRectMake(16, 16, 320 - 32, CGRectGetHeight(self.view.bounds) - 16)];
     label.numberOfLines = 0;
@@ -103,7 +101,8 @@
   self.shineLabel.text = self.textArray[(++self.textIndex) % self.textArray.count];
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
   return UIStatusBarStyleLightContent;
 }
 
