@@ -22,7 +22,8 @@
 
 @implementation RQShineLabel
 
-- (instancetype)init {
+- (instancetype)init
+{
   self = [super init];
   if (!self) {
     return nil;
@@ -33,8 +34,21 @@
   return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame
+{
   self = [super initWithFrame:frame];
+  if (!self) {
+    return nil;
+  }
+  
+  [self commonInit];
+  
+  return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+  self = [super initWithCoder:aDecoder];
   if (!self) {
     return nil;
   }
