@@ -85,12 +85,23 @@
 - (void)setText:(NSString *)text
 {
   self.attributedString = [[self initialAttributedStringFromString:text] mutableCopy];
-  self.attributedText = self.attributedString;
+  [super setAttributedText:self.attributedString];
   for (NSUInteger i = 0; i < text.length; i++) {
     self.characterAnimationDelays[i] = @(arc4random_uniform(self.shineDuration / 2 * 100) / 100.0);
     CGFloat remain = self.shineDuration - [self.characterAnimationDelays[i] floatValue];
     self.characterAnimationDurations[i] = @(arc4random_uniform(remain * 100) / 100.0);
   }
+}
+
+-(void) setAttributedText:(NSAttributedString *) attributedText
+{
+	self.attributedString = [attributedText mutableCopy];
+	[super setAttributedText:attributedText];
+	for (NSUInteger i = 0; i < attributedText.length; i++) {
+		self.characterAnimationDelays[i] = @(arc4random_uniform(self.shineDuration / 2 * 100) / 100.0);
+		CGFloat remain = self.shineDuration - [self.characterAnimationDelays[i] floatValue];
+		self.characterAnimationDurations[i] = @(arc4random_uniform(remain * 100) / 100.0);
+	}
 }
 
 - (void)shine
@@ -159,7 +170,7 @@
                                      [self.attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
                                    }];
     
-    self.attributedText = self.attributedString;
+    [super setAttributedText:self.attributedString];
     if (now > self.beginTime + self.shineDuration) {
       self.displaylink.paused = YES;
       if (self.completion) {
