@@ -84,19 +84,13 @@
 
 - (void)setText:(NSString *)text
 {
-  self.attributedString = [[self initialAttributedStringFromString:text] mutableCopy];
-  [super setAttributedText:self.attributedString];
-  for (NSUInteger i = 0; i < text.length; i++) {
-    self.characterAnimationDelays[i] = @(arc4random_uniform(self.shineDuration / 2 * 100) / 100.0);
-    CGFloat remain = self.shineDuration - [self.characterAnimationDelays[i] floatValue];
-    self.characterAnimationDurations[i] = @(arc4random_uniform(remain * 100) / 100.0);
-  }
+  self.attributedText = [[NSAttributedString alloc] initWithString:text];
 }
 
--(void) setAttributedText:(NSAttributedString *) attributedText
+-(void)setAttributedText:(NSAttributedString *)attributedText
 {
-	self.attributedString = [attributedText mutableCopy];
-	[super setAttributedText:attributedText];
+  self.attributedString = [self initialAttributedStringFromAttributedString:attributedText];
+	[super setAttributedText:self.attributedString];
 	for (NSUInteger i = 0; i < attributedText.length; i++) {
 		self.characterAnimationDelays[i] = @(arc4random_uniform(self.shineDuration / 2 * 100) / 100.0);
 		CGFloat remain = self.shineDuration - [self.characterAnimationDelays[i] floatValue];
@@ -181,13 +175,12 @@
   }
 }
 
-
-- (NSAttributedString *)initialAttributedStringFromString:(NSString *)string
+- (NSMutableAttributedString *)initialAttributedStringFromAttributedString:(NSAttributedString *)attributedString
 {
-  NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+  NSMutableAttributedString *mutableAttributedString = [attributedString mutableCopy];
   UIColor *color = [self.textColor colorWithAlphaComponent:0];
-  [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, string.length)];
-  return [attributedString copy];
+  [mutableAttributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, mutableAttributedString.length)];
+  return mutableAttributedString;
 }
 
 
