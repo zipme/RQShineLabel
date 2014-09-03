@@ -100,16 +100,17 @@
 
 - (void)shine
 {
-  if (!self.isShining && self.isFadedOut) {    
-    self.fadedOut = NO;
-    [self startAnimation];
-  }
+  [self shineWithCompletion:NULL];
 }
 
 - (void)shineWithCompletion:(void (^)())completion
 {
-  self.completion = completion;
-  [self shine];
+  
+  if (!self.isShining && self.isFadedOut) {
+    self.completion = completion;
+    self.fadedOut = NO;
+    [self startAnimation];
+  }
 }
 
 - (void)fadeOut
@@ -169,7 +170,6 @@
       self.displaylink.paused = YES;
       if (self.completion) {
         self.completion();
-        self.completion = NULL;
       }
     }
   }
