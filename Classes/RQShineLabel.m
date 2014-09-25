@@ -150,13 +150,18 @@
 {
   CFTimeInterval now = CACurrentMediaTime();
   for (NSUInteger i = 0; i < self.attributedString.length; i ++) {
-    [self.attributedString enumerateAttribute:NSForegroundColorAttributeName  
+    [self.attributedString enumerateAttribute:NSForegroundColorAttributeName
                                       inRange:NSMakeRange(i, 1)
                                       options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                    usingBlock:^(id value, NSRange range, BOOL *stop) {
-                                     if ((now - self.beginTime) < [self.characterAnimationDelays[i] floatValue]) {
+                                     
+                                     CGFloat currentAlpha = CGColorGetAlpha([(UIColor *)value CGColor]);
+                                     BOOL shouldUpdateAlpha = (self.isFadedOut && currentAlpha > 0) || (!self.isFadedOut && currentAlpha < 1) || (now - self.beginTime) >= [self.characterAnimationDelays[i] floatValue];
+                                     
+                                     if (!shouldUpdateAlpha) {
                                        return;
-                                     }                                     
+                                     }
+                                     
                                      CGFloat percentage = (now - self.beginTime - [self.characterAnimationDelays[i] floatValue]) / ( [self.characterAnimationDurations[i] floatValue]);
                                      if (self.isFadedOut) {
                                        percentage = 1 - percentage;
