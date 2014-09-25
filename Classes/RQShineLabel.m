@@ -150,7 +150,7 @@
 {
   CFTimeInterval now = CACurrentMediaTime();
   for (NSUInteger i = 0; i < self.attributedString.length; i ++) {
-    [self.attributedString enumerateAttribute:NSForegroundColorAttributeName
+    [self.attributedString enumerateAttribute:NSForegroundColorAttributeName  
                                       inRange:NSMakeRange(i, 1)
                                       options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
                                    usingBlock:^(id value, NSRange range, BOOL *stop) {
@@ -164,13 +164,12 @@
                                      UIColor *color = [self.textColor colorWithAlphaComponent:percentage];
                                      [self.attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
                                    }];
-    
-    [super setAttributedText:self.attributedString];
-    if (now > self.beginTime + self.shineDuration) {
-      self.displaylink.paused = YES;
-      if (self.completion) {
-        self.completion();
-      }
+  }
+  [super setAttributedText:self.attributedString];
+  if (now > self.beginTime + self.shineDuration) {
+    self.displaylink.paused = YES;
+    if (self.completion) {
+      self.completion();
     }
   }
 }
