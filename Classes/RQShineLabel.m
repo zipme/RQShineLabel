@@ -55,6 +55,8 @@
   
   [self commonInit];
   
+  [self setText:self.text];
+  
   return self;
 }
 
