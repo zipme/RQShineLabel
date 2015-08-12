@@ -154,6 +154,9 @@
 {
   CFTimeInterval now = CACurrentMediaTime();
   for (NSUInteger i = 0; i < self.attributedString.length; i ++) {
+    if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[self.attributedString.string characterAtIndex:i]]) {
+        continue;
+    }
     [self.attributedString enumerateAttribute:NSForegroundColorAttributeName
                                       inRange:NSMakeRange(i, 1)
                                       options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
