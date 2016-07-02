@@ -6,11 +6,15 @@ A UILabel subclass that lets you animate text similar to [Secret app](http://cap
 
 ## Installation
 
+#### CocoaPods
 RQShineLabel is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
     pod "RQShineLabel"
 
+#### Manually
+1. Download and drop ```RQShineLabel.h``` and ```RQShineLabel.m``` in your project.  
+2. Congratulations! 
 
 ## Usage
 
