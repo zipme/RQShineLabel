@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/zipme'
 
   s.platform     = :ios
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '10.0'
   s.requires_arc = true
 
   s.source_files = 'Classes'

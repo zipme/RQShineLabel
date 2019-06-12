@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-#import "RQShineLabel.h"
+#import <RQShineLabel/RQShineLabel.h>
 
 @interface ViewController ()
 @property (strong, nonatomic) RQShineLabel *shineLabel;
@@ -76,7 +76,7 @@
 {
   [super touchesBegan:touches withEvent:event];
   if (self.shineLabel.isVisible) {
-    [self.shineLabel fadeOutWithCompletion:^{
+      [self.shineLabel fadeOutAnimated:YES completion:^{
       [self changeText];
       [UIView animateWithDuration:2.5 animations:^{
         if (self.wallpaper1.alpha > 0.1) {
