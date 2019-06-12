@@ -103,31 +103,59 @@
 
 - (void)shine
 {
-  [self shineWithCompletion:NULL];
+  [self shineAnimated:YES completion:NULL];
 }
 
-- (void)shineWithCompletion:(void (^)())completion
-{
-  
-  if (!self.isShining && self.isFadedOut) {
-    self.completion = completion;
-    self.fadedOut = NO;
-    [self startAnimationWithDuration:self.shineDuration];
-  }
+- (void)shineAnimated:(BOOL)animated completion:(void (^)(void))completion {
+    if (self.isFadedOut) {
+        if (animated) {
+            if (!self.isShining) {
+                self.completion = completion;
+                self.fadedOut = NO;
+                [self startAnimationWithDuration:self.shineDuration];
+            }
+            
+        } else {
+            self.fadedOut = NO;
+            self.displaylink.paused = YES;
+            
+            UIColor *color = [self.textColor colorWithAlphaComponent:1];
+            [self.attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.attributedString.string.length)];
+            [super setAttributedText:self.attributedString];
+            if (completion) {
+                completion();
+            }
+        }
+    }
 }
 
 - (void)fadeOut
 {
-  [self fadeOutWithCompletion:NULL];
+  [self fadeOutAnimated:YES completion:NULL];
 }
 
-- (void)fadeOutWithCompletion:(void (^)())completion
-{
-  if (!self.isShining && !self.isFadedOut) {
-    self.completion = completion;
-    self.fadedOut = YES;
-    [self startAnimationWithDuration:self.fadeoutDuration];
-  }
+- (void)fadeOutAnimated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    if (!self.isFadedOut) {
+        if (animated) {
+            if (!self.isShining) {
+                self.completion = completion;
+                self.fadedOut = YES;
+                [self startAnimationWithDuration:self.shineDuration];
+            }
+            
+        } else {
+            self.fadedOut = YES;
+            self.displaylink.paused = YES;
+            
+            UIColor *color = [self.textColor colorWithAlphaComponent:0];
+            [self.attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.attributedString.string.length)];
+            [super setAttributedText:self.attributedString];
+            if (completion) {
+                completion();
+            }
+        }
+    }
 }
 
 - (BOOL)isShining
