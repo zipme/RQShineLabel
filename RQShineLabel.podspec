@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RQShineLabel"
-  s.version          = "0.1.4"
+  s.version          = "1.0.0"
   s.summary          = "A UILabel subclass that lets you animate text similar to Secret app."
   s.homepage         = "https://github.com/zipme/RQShineLabel"
   s.screenshots      = "https://raw.githubusercontent.com/zipme/RQShineLabel/master/Screenshots/rqshinelabel.gif", "https://raw.githubusercontent.com/zipme/RQShineLabel/master/Screenshots/1.png"
