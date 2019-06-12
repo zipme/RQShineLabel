@@ -19,3 +19,6 @@ DerivedData
 *.hmap
 *.ipa
 
+Podfile.lock
+Example/Pods
+Example/RQShineLabelDemo.xcworkspace

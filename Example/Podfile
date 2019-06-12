@@ -1,3 +1,5 @@
-platform :ios
+platform :ios, '10.0'
 
+target 'RQShineLabelDemo' do
 pod "RQShineLabel", :path => "../"
+end
