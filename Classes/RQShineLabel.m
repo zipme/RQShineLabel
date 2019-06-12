@@ -141,7 +141,7 @@
             if (!self.isShining) {
                 self.completion = completion;
                 self.fadedOut = YES;
-                [self startAnimationWithDuration:self.shineDuration];
+                [self startAnimationWithDuration:self.fadeoutDuration];
             }
             
         } else {
