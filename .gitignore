@@ -1,7 +1,14 @@
-# OS X
+# macOS
 .DS_Store
 
 # Xcode
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
 build/
 *.pbxuser
 !default.pbxuser
@@ -18,7 +25,3 @@ profile
 DerivedData
 *.hmap
 *.ipa
-
-Podfile.lock
-Example/Pods
-Example/RQShineLabelDemo.xcworkspace
