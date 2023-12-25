@@ -20,7 +20,7 @@
 
 @implementation ViewController
 
-- (id)initWithCoder:(NSCoder *)decoder
+- (instancetype)initWithCoder:(NSCoder *)decoder
 {
   if (self = [super initWithCoder:decoder]) {
     _textArray = @[
@@ -56,7 +56,7 @@
   self.shineLabel = ({
     RQShineLabel *label = [[RQShineLabel alloc] initWithFrame:CGRectMake(16, 16, 320 - 32, CGRectGetHeight(self.view.bounds) - 16)];
     label.numberOfLines = 0;
-    label.text = [self.textArray objectAtIndex:self.textIndex];
+    label.text = (self.textArray)[self.textIndex];
     label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24.0];
     label.backgroundColor = [UIColor clearColor];
     [label sizeToFit];
